@@ -1,13 +1,21 @@
 const express = require('express');
+const { User } = require('./models'); // Import Sequelize models
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware to parse JSON request body
 app.use(express.json());
 
-// Sample route
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
+// Route to get all users
+app.get('/users', async (req, res) => {
+  const users = await User.findAll();
+  res.json(users);
+});
+
+// Route to create a new user
+app.post('/users', async (req, res) => {
+  const { firstName, lastName, email } = req.body;
+  const user = await User.create({ firstName, lastName, email });
+  res.json(user);
 });
 
 // Start server
