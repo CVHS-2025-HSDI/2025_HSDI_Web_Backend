@@ -6,9 +6,10 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // Route to get all users
-app.get('/users', async (req, res) => {
-  const users = await User.findAll();
-  res.json(users);
+app.get('/', async (req, res) => {
+  // const users = await User.findAll();
+  // res.json(users);
+  res.send("Hello world");
 });
 
 // Route to create a new user
