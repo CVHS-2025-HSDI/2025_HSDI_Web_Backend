@@ -1,9 +1,9 @@
 {
     "development": {
       "username": "postgres",
-      "password": "test123",
-      "database": "test",
-      "host": "postgres.cvapps.net",
+      "password": "xxxxxxx",
+      "database": "postgres",
+      "host": "10.1.10.237",
       "dialect": "postgres"
     },
     "test": {
