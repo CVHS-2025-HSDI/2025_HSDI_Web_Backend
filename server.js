@@ -1,6 +1,7 @@
 import express from 'express'
 import { Sequelize } from '@sequelize/core';
 import { PostgresDialect } from '@sequelize/postgres';
+import User from './models/user.js'
 // const Sequelize = require ('@sequelize/core')
 // const PostgresDialect = require('@sequelize/core')
 const sequelize = new Sequelize({
@@ -10,7 +11,6 @@ const sequelize = new Sequelize({
     password: 'test123',
     host: '10.1.10.237',
     port: 5432,
-    ssl: true,
     clientMinMessages: 'notice',
   });
 
@@ -28,6 +28,7 @@ try {
 
 app.get('/', (req,res)=>{
     res.send('hello world')
+    const users = User.findAll()
 })
 
 app.listen(PORT, (error) =>{
