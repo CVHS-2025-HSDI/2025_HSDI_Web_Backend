@@ -1,19 +1,19 @@
 import express from 'express'
 import { Sequelize } from '@sequelize/core';
 import { PostgresDialect } from '@sequelize/postgres';
-import User from './models/user.js'
+//import User from './models/user.js'
 // const Sequelize = require ('@sequelize/core')
 // const PostgresDialect = require('@sequelize/core')
 const sequelize = new Sequelize({
     dialect: PostgresDialect,
     database: 'postgres',
-    user: 'postgres',
-    password: 'test123',
-    host: '10.1.10.237',
+    user: 'luke',
+    password: 'mPcYQ1wzj4YNRjANK9Jkr2G88fUHrGVG',
+    host: 'dpg-cv5j95qn91rc7399prgg-a.oregon-postgres.render.com/cvhs_web_backend',
     port: 5432,
     clientMinMessages: 'notice',
   });
-
+  //postgresql://luke:mPcYQ1wzj4YNRjANK9Jkr2G88fUHrGVG@dpg-cv5j95qn91rc7399prgg-a.oregon-postgres.render.com/cvhs_web_backend
 const app = express();
 const PORT = 5000;
 
@@ -28,7 +28,7 @@ try {
 
 app.get('/', (req,res)=>{
     res.send('hello world')
-    const users = User.findAll()
+    //const users = User.findAll()
 })
 
 app.listen(PORT, (error) =>{
