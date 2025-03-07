@@ -2,8 +2,6 @@ import express from 'express'
 import { Sequelize } from '@sequelize/core';
 import { PostgresDialect } from '@sequelize/postgres';
 //import User from './models/user.js'
-// const Sequelize = require ('@sequelize/core')
-// const PostgresDialect = require('@sequelize/core')
 const sequelize = new Sequelize({
     dialect: PostgresDialect,
     database: 'postgres',
