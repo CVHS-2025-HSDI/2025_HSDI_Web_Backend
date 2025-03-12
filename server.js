@@ -9,6 +9,7 @@ const sequelize = new Sequelize({
     password: 'test123',
     host: '10.1.10.237',
     port: 5432,
+    models: [User],
     clientMinMessages: 'notice',
   });
  
