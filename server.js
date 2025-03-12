@@ -29,7 +29,21 @@ User.sync()
 const jane = await User.create({ firstName: 'Jane', lastName:'zadoorian' });
 // Jane exists in the database now!
 console.log(jane instanceof User); // true
-console.log(jane.firstname); // "Jane"
+console.log(jane.firstName); // "Jane"
   
   // `sequelize.define` also returns the model
   console.log(User === sequelize.models.User); // true
+
+ import express from 'express'
+  const app = express()
+  const port = 3000
+  
+  app.get('/', (req, res) => {
+    res.send('Hello World!')
+  //  const user = User.findAll()
+    res.send(jane.toJSON())
+  })
+  
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
