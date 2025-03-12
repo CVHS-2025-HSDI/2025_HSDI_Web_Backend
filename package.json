@@ -1,23 +1,25 @@
 {
-  "name": "myapp",
+  "name": "2025_hsdi_web_backend",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CVHS-2025-HSDI/2025_HSDI_Web_Backend.git"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@sequelize/postgres": "^7.0.0-alpha.45",
-    "@sequelize/sqlite3": "^7.0.0-alpha.45",
-    "express": "^4.21.2",
-    "sequelize": "^6.37.6",
-    "sqlite3": "5.0.0"
+  "bugs": {
+    "url": "https://github.com/CVHS-2025-HSDI/2025_HSDI_Web_Backend/issues"
   },
-  "type": "module",
-  "devDependencies": {
-    "nodemon": "^3.1.9"
-  }
+  "homepage": "https://github.com/CVHS-2025-HSDI/2025_HSDI_Web_Backend#readme",
+  "dependencies": {
+    "pg": "^8.14.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.6"
+  },
+  "type": "module"
 }

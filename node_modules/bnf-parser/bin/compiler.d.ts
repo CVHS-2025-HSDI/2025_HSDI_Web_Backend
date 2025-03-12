@@ -1,3 +1,0 @@
-import { Parser } from "./parser";
-import { SyntaxNode } from "./syntax";
-export declare function Compile(tree: SyntaxNode): Parser;
