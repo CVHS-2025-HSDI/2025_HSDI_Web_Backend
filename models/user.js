@@ -1,5 +1,6 @@
 // const { Sequelize, DataTypes } = require('sequelize');
-import {Sequelize, DataTypes} from 'sequelize'
+// import sqlite from 'node:sqlite'
+import Sequelize from 'sequelize'
 const sequelize = new Sequelize('sqlite::memory:');
 
 const User = sequelize.define(

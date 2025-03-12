@@ -12,7 +12,8 @@
   "dependencies": {
     "@sequelize/postgres": "^7.0.0-alpha.45",
     "express": "^4.21.2",
-    "sequelize": "^6.37.6"
+    "sequelize": "^6.37.6",
+    "sqlite3": "5.0.0"
   },
   "type": "module",
   "devDependencies": {
