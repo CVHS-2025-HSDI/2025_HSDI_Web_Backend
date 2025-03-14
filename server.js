@@ -33,7 +33,7 @@ console.log(jane.firstName); // "Jane"
   
   // `sequelize.define` also returns the model
   console.log(User === sequelize.models.User); // true
-
+  const users = await User.findAll()
  import express from 'express'
   const app = express()
   const port = 3000
@@ -42,8 +42,8 @@ console.log(jane.firstName); // "Jane"
   
   app.get('/', (req, res) => {
     //res.send('Hello World!')
-  //  const user = User.findAll()
-    res.send(jane.toJSON())
+   
+    res.send(JSON.stringify(users,null,2))
   })
   
   app.listen(port, () => {
