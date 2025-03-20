@@ -1,51 +1,38 @@
 import Sequelize from 'sequelize'
-const sequelize = new Sequelize('postgres://postgres:test123@10.1.10.237:5432/postgres') // Example for postgres
-try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-  import { DataTypes } from 'sequelize';
+import express from 'express'
+import cors from 'cors'
+import {User} from './models/user.js'
+
+const app = express()
+const port = 3200
+
+
+app.use(cors())
+
   
-  const User = sequelize.define(
-    'User',
-    {
-      // Model attributes are defined here
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-      },
-    },
-    {
-      // Other model options go here
-    },
-  );
-User.sync()
+User.sync() //create table User if doesn't exist
+
 const jane = await User.create({ firstName: 'liam', lastName:'zadoorian' });
 // Jane exists in the database now!
-console.log(jane instanceof User); // true
-console.log(jane.firstName); // "Jane"
+console.log(jane instanceof User); // does jane exist
+console.log(jane.firstName); 
   
   // `sequelize.define` also returns the model
-  console.log(User === sequelize.models.User); // true
-  const users = await User.findAll()
- import express from 'express'
-  const app = express()
-  const port = 3000
-  import cors from 'cors'
-  app.use(cors())
+//console.log(User === sequelize.models.User); // should be true
+const users = await User.findAll() // select all users
   
-  app.get('/', (req, res) => {
-    //res.send('Hello World!')
+app.get('/', (req, res) => {
+    // res.send('Hello World!')
    
-    res.send(JSON.stringify(users,null,2))
-  })
+  res.send(JSON.stringify(users,null,2))
+})
+
+app.get('/MainPage', (req, res) => {
+    // res.send('Hello World!')
+   
+  res.send(JSON.stringify(users,null,2))
+})
   
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
