@@ -7,7 +7,6 @@ import { Course } from './models/course.js'
 const app = express()
 const port = 3200
 
-
 app.use(cors())
 
   
@@ -18,7 +17,7 @@ await Course.destroy({
   },
 });
 const jane = await User.create({ firstName: 'liam', lastName:'zadoorian' });
-const compsci = await Course.create({courseName: 'Super AP', courseID: 0, courseImageLink:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fliam-zadoorian-b84488291&psig=AOvVaw39pQiTNeOm_Hz8Wd_MksyC&ust=1742583015881000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLjn8d6pmYwDFQAAAAAdAAAAABAE'});
+const compsci = await Course.create({courseName: 'Super AP', courseID: 0, courseImageLink:'https://media.licdn.com/dms/image/v2/D5603AQHtpGYOHCFqEA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1700094847802?e=2147483647&v=beta&t=FXRWjsZOgvsyeZ0ko1Ds2ZYIdqhwKzCtEvoy8BiQaaE'});
 // Jane exists in the database now!
 console.log(jane instanceof User); // does jane exist
 console.log(jane.firstName); 
