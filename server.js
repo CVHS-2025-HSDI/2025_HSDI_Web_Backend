@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import {User} from './models/user.js'
 import { Course } from './models/course.js'
-
+import {addUser, addCourse, addClub} from './add.js'
 const app = express()
 const port = 3200
 
@@ -17,11 +17,13 @@ await Course.destroy({
   },
 });
 const jane = await User.create({ firstName: 'liam', lastName:'zadoorian' });
-const compsci = await Course.create({courseName: 'Super AP', courseID: 0, courseImageLink:'https://media.licdn.com/dms/image/v2/D5603AQHtpGYOHCFqEA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1700094847802?e=2147483647&v=beta&t=FXRWjsZOgvsyeZ0ko1Ds2ZYIdqhwKzCtEvoy8BiQaaE'});
+
 // Jane exists in the database now!
 console.log(jane instanceof User); // does jane exist
 console.log(jane.firstName); 
 console.log(compsci instanceof Course);
+
+
   
   // `sequelize.define` also returns the model
 //console.log(User === sequelize.models.User); // should be true
@@ -53,3 +55,4 @@ app.get('/MainPage', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+

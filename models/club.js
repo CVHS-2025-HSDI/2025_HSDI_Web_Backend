@@ -4,20 +4,20 @@ import {sequelize} from './user.js'
 
 
 
-const Course = sequelize.define(
-    'Course ',
+const Club = sequelize.define(
+    'Club ',
     {
       // Model attributes are defined here
-      courseName: {
+      clubName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      courseID: {
+      clubID: {
         type: DataTypes.INTEGER,
          
         // allowNull defaults to true
       },
-      courseImageLink:{
+      clubImageLink:{
         type: DataTypes.STRING,
 
       }
@@ -33,6 +33,6 @@ const Course = sequelize.define(
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
-  Course.sync()
+  Club.sync()
 
-  export {Course, sequelize}
+  export {Club, sequelize}
