@@ -21,7 +21,6 @@ const jane = await User.create({ firstName: 'liam', lastName:'zadoorian' });
 // Jane exists in the database now!
 console.log(jane instanceof User); // does jane exist
 console.log(jane.firstName); 
-console.log(compsci instanceof Course);
 
 
   
