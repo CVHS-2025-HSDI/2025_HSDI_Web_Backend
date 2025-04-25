@@ -16,10 +16,32 @@ const User = sequelize.define(
         type: DataTypes.STRING,
         // allowNull defaults to true
       },
+      username:{
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      password:{
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email:{
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      tempSchedule: {
+        type: DataTypes.JSON,
+      },
+      finalSchedule: {
+        type: DataTypes.JSON
+      },
+      currentSchedule: {
+        type: DataTypes.JSON
+      }
     },
     {
       // Other model options go here
+      
     },
   );
-
+  
   export {User, sequelize}

@@ -8,8 +8,8 @@ export function addCourse(name, id, image) {
 }
 
 
-export function addUser(first, last) {
-    User.create({firstName: 'first', lastName: 'last'});
+export function addUser(first, last, username, password, email, tempSchedule, finalSchedule, currentSchedule) {
+    User.create({firstName: first, lastName: last, username: username, password: password, email: email, finalSchedule: finalSchedule, currentSchedule: currentSchedule });
 }
 
 export function addClub(name, id, image) {

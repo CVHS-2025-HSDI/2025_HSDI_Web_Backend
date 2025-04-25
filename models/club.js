@@ -5,7 +5,7 @@ import {sequelize} from './user.js'
 
 
 const Club = sequelize.define(
-    'Club ',
+    'Club',
     {
       // Model attributes are defined here
       clubName: {
@@ -20,6 +20,18 @@ const Club = sequelize.define(
       clubImageLink:{
         type: DataTypes.STRING,
 
+      },
+      clubDescription:{
+        type: DataTypes.STRING,
+      },
+      clubMembers:{
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+      },
+      roomNumber:{
+        type: DataTypes.INTEGER,
+      },
+      clubContact:{
+        type: DataTypes.STRING,
       }
     },
     {
@@ -33,6 +45,6 @@ const Club = sequelize.define(
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
-  Club.sync()
+  
 
   export {Club, sequelize}

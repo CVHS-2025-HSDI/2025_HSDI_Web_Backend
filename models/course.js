@@ -5,7 +5,7 @@ import {sequelize} from './user.js'
 
 
 const Course = sequelize.define(
-    'Course ',
+    'Course',
     {
       // Model attributes are defined here
       courseName: {
@@ -20,7 +20,17 @@ const Course = sequelize.define(
       courseImageLink:{
         type: DataTypes.STRING,
 
-      }
+      },
+      courseDescription:{
+        type: DataTypes.STRING,
+
+      },
+      teacherList:{
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+      },
+      availablePeriods:{
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+      },
     },
     {
       // Other model options go here
@@ -33,6 +43,6 @@ const Course = sequelize.define(
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
-  Course.sync()
+  
 
   export {Course, sequelize}
