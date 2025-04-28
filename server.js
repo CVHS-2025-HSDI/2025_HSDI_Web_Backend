@@ -21,7 +21,7 @@ try {
   }
 
 User.sync();
-Course.sync({force: true});
+Course.sync();
 Club.sync();
 Admin.sync();
 
@@ -60,8 +60,9 @@ app.get('/CourseDescription', (req, res )=>{
   res.send('coursedescription')
 })
 app.post('/Login',(req, res)=>{
-  let username = req.body.username.toString();
-  let password = req.body.password.toString();
+  console.log("body: "+req.body)
+  let username = req.body.username;
+  let password = req.body.password;
   console.log(req.body)
   res.send(`Username: ${username} Password: ${password}`);
   console.log(username, password)
