@@ -34,6 +34,7 @@ const Course = sequelize.define(
     },
     {
       // Other model options go here
+      freezeTableName: true,
     },
   );
 

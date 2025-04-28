@@ -13,7 +13,12 @@ const port = 3200
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
 
 User.sync();
 Course.sync({force: true});
@@ -21,20 +26,21 @@ Club.sync();
 Admin.sync();
 
 
-addUser('liam', 'zadoorian', 'xc4life', 'test123', 'example@gmail.com', )
+addUser('liam', 'zadoorian', 'xc4life', 'test123', 'example@gmail.com', {blah: 'blah'}, {blah: 'blah'}, {blah: 'blah'})
 
 
 
+console.log('does user exist')
+console.log(User === sequelize.models.User);
 
-  
   // `sequelize.define` also returns the model
 //console.log(User === sequelize.models.User); // should be true
-const users = await User.findAll() // select all users
+//const users = await User.findAll() // select all users
 const firstnames = await User.findAll({
   attributes: ['firstName'],
 })
 
-
+const courses = await Course.findAll();
   
 app.get('/', (req, res) => {
     // res.send('Hello World!')
@@ -56,6 +62,7 @@ app.get('/CourseDescription', (req, res )=>{
 app.post('/Login',(req, res)=>{
   let username = req.body.username.toString();
   let password = req.body.password.toString();
+  console.log(req.body)
   res.send(`Username: ${username} Password: ${password}`);
   console.log(username, password)
 })

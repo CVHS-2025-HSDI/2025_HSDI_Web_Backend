@@ -1,8 +1,7 @@
 import { DataTypes } from 'sequelize';
 import Sequelize from 'sequelize'
 
-const sequelize = new Sequelize('postgres://postgres:test123@10.1.10.237:5432/postgres') // Example for postgres
-
+const sequelize = new Sequelize('postgres://postgres:test123@10.1.10.237:5432/postgres') 
 
 const User = sequelize.define(
     'User',
@@ -43,5 +42,5 @@ const User = sequelize.define(
       
     },
   );
-  
+
   export {User, sequelize}
