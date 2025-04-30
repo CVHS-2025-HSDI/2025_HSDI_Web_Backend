@@ -1,57 +1,71 @@
-import Sequelize from 'sequelize'
-import express from 'express'
-import cors from 'cors'
-import {User} from './models/user.js'
-import { Course } from './models/course.js'
-import {addUser, addCourse, addClub} from './add.js'
-const app = express()
-const port = 3200
+import Sequelize, { Op } from 'sequelize';
+import express from 'express';
+import cors from 'cors';
+import { Course } from './models/course.js';
+import { sequelize } from './models/course.js';
 
-app.use(cors())
+const app = express();
+const port = 4000;
 
-  
-User.sync() //create table User if doesn't exist
-await Course.destroy({
-  where: {
-    courseID: 0,
-  },
-});
-const jane = await User.create({ firstName: 'liam', lastName:'zadoorian' });
+app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(express.json());
 
-// Jane exists in the database now!
-console.log(jane instanceof User); // does jane exist
-console.log(jane.firstName); 
+// Connect and prepare database
+await sequelize.authenticate();
+await Course.sync();
 
 
-  
-  // `sequelize.define` also returns the model
-//console.log(User === sequelize.models.User); // should be true
-const users = await User.findAll() // select all users
-const firstnames = await User.findAll({
-  attributes: ['firstName'],
-})
-const courseImages = await Course.findAll({
-  attributes:['courseImageLink'],
-  where: {
-    courseID:0
+app.get('/course-search', async (req, res) => {
+  try {
+    const { department, tag, name, gradeLevels } = req.query;
+
+    const whereClause = {};
+
+    if (department) {
+      whereClause.department = department;
+    }
+
+    if (tag) {
+      whereClause.tags = {
+        [Op.contains]: [tag],
+      };
+    }
+
+    if (gradeLevels) {
+      const gradeArray = Array.isArray(gradeLevels)
+        ? gradeLevels.map(Number)
+        : [Number(gradeLevels)];
+      whereClause.gradelevels = {
+        [Op.contains]: gradeArray,
+      };
+    }
+
+    if (name) {
+      whereClause.name = {
+        [Op.iLike]: `%${name}%`, // case-insensitive LIKE
+      };
+    }
+
+    const courses = await Course.findAll({ where: whereClause });
+    res.json(courses);
+  } catch (err) {
+    console.error('Error fetching courses:', err);
+    res.status(500).send('Server Error');
   }
 });
 
-  
-app.get('/', (req, res) => {
-    // res.send('Hello World!')
-   
-  res.send(JSON.stringify(users,null,2))
-})
+app.get('/MainPage', async (req, res) => {
+  try {
+    const courseImages = await Course.findAll({
+      attributes: ['courseImageLink'],
+    });
+    res.json(courseImages);
+  } catch (err) {
+    console.error('Error fetching course images:', err);
+    res.status(500).send('Server Error');
+  }
+});
 
-app.get('/MainPage', (req, res) => {
-    // res.send('Hello World!')
-   
-  res.send(JSON.stringify(courseImages,null,2))
-})
-
-  
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
-
+  console.log(`Example app listening on port ${port}`);
+});
