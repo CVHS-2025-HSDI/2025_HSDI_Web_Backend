@@ -21,7 +21,7 @@ const Club = sequelize.define(
         type: DataTypes.STRING,
 
       },
-      clubDescription:{
+      clubInfo:{
         type: DataTypes.STRING,
       },
       clubMembers:{
@@ -39,8 +39,5 @@ const Club = sequelize.define(
       freezeTableName: true,
     },
   );
-
-
-  
 
   export {Club, sequelize}

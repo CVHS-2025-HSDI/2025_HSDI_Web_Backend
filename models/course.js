@@ -21,7 +21,7 @@ const Course = sequelize.define(
         type: DataTypes.STRING,
 
       },
-      courseDescription:{
+      courseInfo:{
         type: DataTypes.STRING,
 
       },
@@ -34,7 +34,7 @@ const Course = sequelize.define(
     },
     {
       // Other model options go here
-      freezeTableName: true,
+      
     },
   );
 

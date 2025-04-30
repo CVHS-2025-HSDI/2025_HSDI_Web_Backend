@@ -30,7 +30,7 @@ Club.sync();
 Admin.sync();
 const hashed = await bcrypt.hash('test123', 4)
 
-// addUser('liam', 'zadoorian', 'xc5life', hashed, 'example@gmail.com', {blah: 'blah'}, {blah: 'blah'}, {blah: 'blah'})
+addUser('liam', 'zadoorian', 'xc5life', hashed, 'example@gmail.com', {blah: 'blah'}, {blah: 'blah'}, {blah: 'blah'})
 
 
 
@@ -39,21 +39,22 @@ console.log(User === sequelize.models.User);
 
   // `sequelize.define` also returns the model
 //console.log(User === sequelize.models.User); // should be true
-const users = await User.findAll() // select all users
+// const users = await User.findAll() // select all users
 const firstnames = await User.findAll({
   attributes: ['firstName'],
 })
 
 const courses = await Course.findAll();
   
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     // res.send('Hello World!')
-   
-  res.send('hello')
+  const users = await User.findAll()
+  res.send(users)
 })
 
 app.get('/MainPage', (req, res) => {
     // res.send('Hello World!')
+
    
   res.send(JSON.stringify(courses,null,2))
 })
@@ -88,7 +89,7 @@ app.post('/Login', async (req, res)=>{
   }
   
 })
-app.post('/SignUp', (req,res)=>{
+app.post('/SignUp', async (req,res)=>{
   let username = req.body.user;
   let password = req.body.passwd;
   let email = req.body.email;
@@ -97,8 +98,9 @@ app.post('/SignUp', (req,res)=>{
   let current_Schedule = req.body.current_Schedule;
   let final_Schedule = req.body.final_Schedule;
   let temp_Schedule = req.body.temp_Schedule;
-  const hashedpassword = bcrypt.hash(password,10);
+  const hashedpassword = await bcrypt.hash(password,10);
   addUser(firstname, lastname, username, hashedpassword, email, temp_Schedule, final_Schedule, current_Schedule );
+  res.send('user created')
 
 })
 app.listen(port, () => {

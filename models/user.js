@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import Sequelize from 'sequelize'
 
-const sequelize = new Sequelize('postgres://postgres:testcow@localhost/postgres') 
+const sequelize = new Sequelize('postgres://postgres:test123@10.1.10.237/postgres') 
 
 const User = sequelize.define(
     'User',
