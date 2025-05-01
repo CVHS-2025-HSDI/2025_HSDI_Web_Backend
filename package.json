@@ -1,0 +1,27 @@
+{
+  "name": "2025_hsdi_web_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CVHS-2025-HSDI/2025_HSDI_Web_Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CVHS-2025-HSDI/2025_HSDI_Web_Backend/issues"
+  },
+  "homepage": "https://github.com/CVHS-2025-HSDI/2025_HSDI_Web_Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "pg": "^8.14.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.6"
+  },
+  "type": "module"
+}
