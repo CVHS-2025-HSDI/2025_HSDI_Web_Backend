@@ -8,6 +8,7 @@ import {Admin} from './models/admin.js'
 import {addUser, addCourse, addClub} from './add.js'
 import bodyParser from 'body-parser'
 import bcrypt from 'bcrypt'
+import Sequelize, { Op } from 'sequelize';
 
 const app = express()
 const port = 3200
@@ -22,12 +23,12 @@ try {
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
-  }
+ }
 
-User.sync();
-Course.sync();
-Club.sync();
-Admin.sync();
+await User.sync();
+await Course.sync();
+await Club.sync();
+await Admin.sync();
 const hashed = await bcrypt.hash('test123', 4)
 
 addUser('liam', 'zadoorian', 'xc5life', hashed, 'example@gmail.com', {blah: 'blah'}, {blah: 'blah'}, {blah: 'blah'})
@@ -52,12 +53,7 @@ app.get('/', async (req, res) => {
   res.send(users)
 })
 
-app.get('/MainPage', (req, res) => {
-    // res.send('Hello World!')
 
-   
-  res.send(JSON.stringify(courses,null,2))
-})
 app.get('/ClubDescription', (req, res)=>{
   res.send('club descriptoin')
 })
@@ -103,7 +99,61 @@ app.post('/SignUp', async (req,res)=>{
   res.send('user created')
 
 })
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
 
+
+
+
+app.get('/course-search', async (req, res) => {
+  try {
+    const { department, tag, name, gradeLevels } = req.query;
+
+    const whereClause = {};
+
+    if (department) {
+      whereClause.department = department;
+    }
+
+    if (tag) {
+      whereClause.tags = {
+        [Op.contains]: [tag],
+      };
+    }
+
+    if (gradeLevels) {
+      const gradeArray = Array.isArray(gradeLevels)
+        ? gradeLevels.map(Number)
+        : [Number(gradeLevels)];
+      whereClause.gradelevels = {
+        [Op.contains]: gradeArray,
+      };
+    }
+
+    if (name) {
+      whereClause.name = {
+        [Op.iLike]: `%${name}%`, // case-insensitive LIKE
+      };
+    }
+
+    const courses = await Course.findAll({ where: whereClause });
+    res.json(courses);
+  } catch (err) {
+    console.error('Error fetching courses:', err);
+    res.status(500).send('Server Error');
+  }
+});
+
+app.get('/MainPage', async (req, res) => {
+  try {
+    const courseImages = await Course.findAll({
+      attributes: ['courseImageLink'],
+    });
+    res.json(courseImages);
+  } catch (err) {
+    console.error('Error fetching course images:', err);
+    res.status(500).send('Server Error');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
