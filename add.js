@@ -27,15 +27,17 @@ export function addUser(fname, lname, login, pass, mail, temp_S, final_S, curr_S
     });
 };
 
-export function addClub(name, id, image, info, members, num, contact) {
+export function addClub(name, image, info, prez, vicePrez, num, contact, advisor, date) {
     Club.create({
         clubName: name, 
-        clubID: id, 
         clubImageLink: image,
-        clubInfo: info, 
-        clubMembers: members,
+        clubDescription: info, 
+        president: prez,
+        vicePresident: vicePrez,
         roomNumber: num,
-        clubContact: contact
+        clubContact: contact,
+        clubAdvisor: advisor, 
+        meetingDate: date,
     });
 };
 
