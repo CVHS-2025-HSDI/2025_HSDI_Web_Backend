@@ -15,20 +15,17 @@ const Course = sequelize.define('Course', {
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
+  courseName: {
     type: DataTypes.STRING(255),
     allowNull: false,
   },
-  coursedescription: {
+  courseDescription: {
     type: DataTypes.TEXT,
   },
-  subject: {
-    type: DataTypes.STRING(255),
-  },
-  difficulty: {
+  courseDifficulty: {
     type: DataTypes.REAL,
   },
-  department: {
+  courseDepartment: {
     type: DataTypes.TEXT,
   },
   tags: {
@@ -40,6 +37,9 @@ const Course = sequelize.define('Course', {
   gradelevels: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
   },
+  AthroughGRequirements: {
+    type: DataTypes.STRING,
+  }
 }, {
   tableName: 'course',
   timestamps: false,
