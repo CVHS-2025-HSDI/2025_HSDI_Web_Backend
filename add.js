@@ -30,7 +30,7 @@ export async function addUser(fname, lname, login, pass, mail, temp_S, final_S, 
     });
 };
 
-export async function addClub(name, image, info, prez, vicePrez, num, contact, advisor, date) {
+export async function addClub(name, image, info, prez, vicePrez, num, contact, advisor, date, quals, type) {
     await Club.create({
         clubName: name, 
         clubImageLink: image,
@@ -41,6 +41,8 @@ export async function addClub(name, image, info, prez, vicePrez, num, contact, a
         clubContact: contact,
         clubAdvisor: advisor, 
         meetingDate: date,
+        qualifications: quals,
+        clubType: type
     });
 };
 
