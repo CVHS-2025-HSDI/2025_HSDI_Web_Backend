@@ -12,27 +12,38 @@ const Club = sequelize.define(
         type: DataTypes.STRING,
         allowNull: false,
       },
-      clubID: {
-        type: DataTypes.INTEGER,
-         
-        // allowNull defaults to true
-      },
       clubImageLink:{
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
 
       },
-      clubInfo:{
+      clubDescription:{
+        type: DataTypes.TEXT,
+      },
+      president:{
         type: DataTypes.STRING,
       },
-      clubMembers:{
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
+      vicePresident:{
+        type: DataTypes.STRING,
       },
       roomNumber:{
         type: DataTypes.INTEGER,
       },
       clubContact:{
         type: DataTypes.STRING,
+      },
+      clubAdvisor:{
+        type: DataTypes.STRING,
+      },
+      meetingDate:{
+        type: DataTypes.STRING,
+      },
+      qualifications:{
+        type: DataTypes.STRING,
+      },
+      clubType:{
+        type: DataTypes.STRING,
       }
+
     },
     {
       // Other model options go here
