@@ -1,4 +1,3 @@
-import Sequelize from 'sequelize'
 import express from 'express'
 import cors from 'cors'
 import {User, sequelize} from './models/user.js'

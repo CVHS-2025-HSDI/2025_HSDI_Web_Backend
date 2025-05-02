@@ -7,11 +7,7 @@ new course table based on what I had on my own postgres database.
 Please make your table look like this on your postgres database
 make the changes to the credentials below to connect to your postgres database as needed.
 */
-const sequelize = new Sequelize('testdb', 'postgres', 'AJOh01252008', {
-  host: 'localhost',
-  dialect: 'postgres',
-  port: 5432,
-});
+import {sequelize} from './user.js'
 
 const Course = sequelize.define('Course', {
   id: {
