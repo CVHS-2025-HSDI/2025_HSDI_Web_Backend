@@ -3,11 +3,11 @@ import { User } from './models/user.js'
 import {Club} from './models/club.js'
 import {Admin} from './models/admin.js'
 
-export function addCourse(courseName, description, rating, department, keywords, requirements, grades, agrequirements) {
-    Course.create({
-        name: courseName,
-        coursedescription: description,
-        difficulty: rating,
+export async function addCourse(name, description, rating, department, keywords, requirements, grades, agrequirements) {
+    await Course.create({
+        courseName: name,
+        courseDescription: description,
+        courseDifficulty: rating,
         courseDepartment: department,
         tags: keywords, 
         prerequisites: requirements,
@@ -17,8 +17,8 @@ export function addCourse(courseName, description, rating, department, keywords,
     });
 };
 
-export function addUser(fname, lname, login, pass, mail, temp_S, final_S, curr_S) {
-    User.create({
+export async function addUser(fname, lname, login, pass, mail, temp_S, final_S, curr_S) {
+    await User.create({
         firstName: fname,
         lastName: lname, 
         username: login, 
@@ -30,8 +30,8 @@ export function addUser(fname, lname, login, pass, mail, temp_S, final_S, curr_S
     });
 };
 
-export function addClub(name, image, info, prez, vicePrez, num, contact, advisor, date) {
-    Club.create({
+export async function addClub(name, image, info, prez, vicePrez, num, contact, advisor, date) {
+    await Club.create({
         clubName: name, 
         clubImageLink: image,
         clubDescription: info, 
@@ -44,8 +44,8 @@ export function addClub(name, image, info, prez, vicePrez, num, contact, advisor
     });
 };
 
-export function addAdmin(first, last, user, pass, mail, class_R){
-    Admin.create({
+export async function addAdmin(first, last, user, pass, mail, class_R){
+    await Admin.create({
         firstName: first, 
         lastName: last, 
         username: user, 

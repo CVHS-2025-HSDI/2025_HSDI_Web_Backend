@@ -56,8 +56,9 @@ app.get('/', async (req, res) => {
 app.get('/ClubDescription', (req, res)=>{
   res.send('club descriptoin')
 })
-app.get('/CourseDescription', (req, res )=>{
-  res.send('coursedescription')
+app.get('/CourseDescription', async (req, res )=>{
+  const courses = await Course.findAll();
+  res.send(courses)
 })
 app.post('/Login', async (req, res)=>{
   let user = req.body.user;
@@ -143,8 +144,8 @@ app.get('/course-search', async (req, res) => {
 
 app.get('/MainPage', async (req, res) => {
   try {
-    const courseImages = await Course.findAll({
-      attributes: ['courseImageLink'],
+    const courseImages = await Club.findAll({
+      attributes: ['clubImageLink'],
     });
     res.json(courseImages);
   } catch (err) {
