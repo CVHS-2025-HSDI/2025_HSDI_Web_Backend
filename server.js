@@ -53,8 +53,9 @@ app.get('/', async (req, res) => {
 })
 
 
-app.get('/ClubDescription', (req, res)=>{
-  res.send('club descriptoin')
+app.get('/ClubDescription', async (req, res)=>{
+  const clubs = await Club.findAll()
+  res.send(clubs)
 })
 app.get('/CourseDescription', async (req, res )=>{
   const courses = await Course.findAll();
@@ -88,15 +89,52 @@ app.post('/Login', async (req, res)=>{
 app.post('/SignUp', async (req,res)=>{
   let username = req.body.user;
   let password = req.body.passwd;
-  let email = req.body.email;
+  let useremail = req.body.email;
   let firstname = req.body.firstname;
   let lastname= req.body.lastname;
   let current_Schedule = req.body.current_Schedule;
   let final_Schedule = req.body.final_Schedule;
   let temp_Schedule = req.body.temp_Schedule;
+  if(username == ''){
+    res.send('Username blank');
+    return;
+  };
+  if(password == ''){
+    res.send('Password blank');
+    return;
+  };
+  if(useremail == ''){
+    res.send('Email blank');
+    return;
+  };
+  if(firstname == ''){
+    res.send('First Name blank');
+    return;
+  };
+  if(lastname == ''){
+    res.send('Last Name blank');
+    return;
+  };
   const hashedpassword = await bcrypt.hash(password,10);
-  addUser(firstname, lastname, username, hashedpassword, email, temp_Schedule, final_Schedule, current_Schedule );
-  res.send('user created')
+  function valid(email) {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  }
+  if(valid(useremail)){
+    const existUser = await User.findOne({where: {email: useremail}})
+    if(existUser){
+      res.send('User already exists')
+    }
+    else{
+      addUser(firstname, lastname, username, hashedpassword, useremail, temp_Schedule, final_Schedule, current_Schedule );
+      res.send('User created')
+    }
+  }
+  else{
+    res.send('Invalid Email')
+  }
+  
+  
 
 })
 
