@@ -7,7 +7,7 @@ export function addCourse(courseID, courseName, courseDescription, courseDifficu
     Course.create({
         id: courseID,
         name: courseName,
-        description: courseDescription,
+        coursedescription: courseDescription,
         difficulty: courseDifficulty,
         department: courseDepartment,
         tags: courseTags,
