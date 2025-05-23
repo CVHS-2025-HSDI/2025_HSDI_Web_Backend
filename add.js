@@ -3,14 +3,16 @@ import { User } from './models/user.js'
 import {Club} from './models/club.js'
 import {Admin} from './models/admin.js'
 
-export function addCourse(name, id, image, info, t_List, a_Per) {
+export function addCourse(courseID, courseName, courseDescription, courseDifficulty, courseDepartment, courseTags, coursePrerequisites, courseGradeLevels) {
     Course.create({
-        courseName: name, 
-        courseID: id, 
-        courseImageLink: image,
-        courseInfo: info,
-        teacherList: t_List,
-        availablePeriods: a_Per
+        id: courseID,
+        name: courseName,
+        description: courseDescription,
+        difficulty: courseDifficulty,
+        department: courseDepartment,
+        tags: courseTags,
+        prerequisites: coursePrerequisites,
+        gradeLevels: courseGradeLevels
     });
 };
 
