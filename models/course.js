@@ -31,11 +31,8 @@ const Course = sequelize.define('Course', {
   department: {
     type: DataTypes.TEXT,
   },
-  tags: {
-    type: DataTypes.ARRAY(DataTypes.TEXT),
-  },
-  prerequisites: {
-    type: DataTypes.TEXT,
+  tags:{
+    type: DataTypes.ARRAY(DataTypes.STRING),
   },
   gradelevels: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),

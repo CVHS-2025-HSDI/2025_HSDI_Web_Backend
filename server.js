@@ -45,7 +45,7 @@ const firstnames = await User.findAll({
 })
 
 const courses = await Course.findAll();
-  
+console.log(courses)
 app.get('/', async (req, res) => {
     // res.send('Hello World!')
   const users = await User.findAll()
@@ -54,10 +54,10 @@ app.get('/', async (req, res) => {
 
 
 app.get('/ClubDescription', (req, res)=>{
-  res.send('club descriptoin')
+  res.send(Club.findAll())
 })
 app.get('/CourseDescription', (req, res )=>{
-  res.send('coursedescription')
+  res.send(courses)
 })
 app.post('/Login', async (req, res)=>{
   let user = req.body.user;
